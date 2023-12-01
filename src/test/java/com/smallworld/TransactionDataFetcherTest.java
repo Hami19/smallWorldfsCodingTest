@@ -9,10 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -87,6 +84,13 @@ public class TransactionDataFetcherTest {
     void testGetTop3TransactionsByAmount() {
         List<Transaction> transactions = transactionDataFetcher.getTop3TransactionsByAmount();
         assertEquals(985.0,transactions.get(0).getAmount());
+    }
+
+    @Test
+    void testGetTopSender() {
+        Optional<String> topSender = transactionDataFetcher.getTopSender();
+        assertTrue(topSender.isPresent());
+        assertEquals("Grace Burgess",topSender.get());
     }
 
 }
